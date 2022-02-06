@@ -153,7 +153,14 @@ The value functions under constraints are obtained by
 [V_tilde, V_tilde_F, V_tilde_w, V_tilde_w_F] = V_tilde_Losses(m_B, n_s_full, Obs_SHM, alpha_S_NoSHM, Vpi_S_NoSHM, alpha_S_SHM, Vpi_S_SHM);
 ```
 
-Finally, the VoI can be computed by the difference between value functions.
+Finally, the VoI can be computed by the difference between value functions and see
+
+```
+VoI_plus =      V_tilde - V_tilde_w_F;
+VoI_C_plus =    V_tilde - V_tilde_w;
+VoI =           V_star - V_star_w_F;
+VoI_C =         V_star - V_star_w_F;
+```
 
 
 ## Code Pipeline
