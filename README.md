@@ -84,7 +84,7 @@ We save the defined parameters by commond
 ```
 save(‘POMDP_Input', 'Tr', 'n_s_full', 'Cost_A', 'Cost_S', 'ObsE1', 'ObsE2', 'discount');
 ```
-where Cost_S is used for constrained setting later. The code for problem definition is in file XXX.
+where `Cost_S` is used for constrained setting later. The code for problem definition is in file XXX.
 
 ## POMDP Solving
 The POMDP is solved by R package. 
@@ -112,7 +112,7 @@ out_A_SHM <- sarsop(input$Tr, input$ObsTest, input$C.A,
 	         input$discount, state_prior=initial_b, precision = acc, timeout = time_out)
 ```
 
-where state_prior, precision and timeout are the optional inputs in SARSOP, and they are not related to the our engineering problem. The output contains two variables, “out_XXX$vectors” and “out_XXX$action”, representing the alpha-vectors and the corresponding actions, respectively.
+where state_prior, precision and timeout are the optional inputs in SARSOP, and they are not related to the our engineering problem. The output contains two variables, `out_XXX$vectors` and `out_XXX$action`, representing the alpha-vectors and the corresponding actions, respectively.
 
 Save the outputs by
 
@@ -134,10 +134,21 @@ Cost_S = [ 0 	Cr_S;
            0 	Cr_S;
            Cf 	Cr_S + Cf];
 ```
+By solving a POMDP with social loss, the social constrained policy is obtained in our analysis.
+
 
 ## VoI Analysis
-Without external constraints, we can simply compute the value functions and VoI by
+Without the external constraints, we can simply compute the value functions by
 
 ```
 [V_star, V_star_F, V_star_w, V_star_w_F] = V_star_Losses(m_B, Obs_SHM, alpha_A_NoSHM, alpha_A_SHM);
 ```
+
+Considering the external constraints, the concept of cross-product MDPs is used to build policy graph to evaluate a constrained policy. The recommended references are [Information Avoidance and Overvaluation in Sequential Decision Making under Epistemic Constraints](https://arxiv.org/abs/2106.04984) and [Predicting the Evolution of Controlled Systems Modeled by Finite Markov Processes](https://ieeexplore.ieee.org/document/9406117).
+
+The value functions under constraints are obtained by
+
+```
+[V_tilde, V_tilde_F, V_tilde_w, V_tilde_w_F] = V_tilde_Losses(m_B, n_s_full, Obs_SHM, alpha_S_NoSHM, Vpi_S_NoSHM, alpha_S_SHM, Vpi_S_SHM);
+```
+
