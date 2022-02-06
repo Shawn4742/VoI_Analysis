@@ -112,7 +112,7 @@ out_A_SHM <- sarsop(input$Tr, input$ObsTest, input$C.A,
 	         input$discount, state_prior=initial_b, precision = acc, timeout = time_out)
 ```
 
-where state_prior, precision and timeout are the optional inputs in SARSOP, and they are not related to the our engineering problem. The output contains two variables, `out_XXX$vectors` and `out_XXX$action`, representing the alpha-vectors and the corresponding actions, respectively.
+where state_prior, precision and timeout are the optional inputs in SARSOP, and they are not related to the defined engineering problem, but they may have impacts on the quality of POMDP solutions. The output contains two variables, `out_XXX$vectors` and `out_XXX$action`, representing the alpha-vectors and the corresponding actions, respectively.
 
 Save the outputs by
 
@@ -123,7 +123,7 @@ alpha_S_SHM   = out_S_SHM$vectors,   actions_S_SHM   = out_S_SHM$action,
 alpha_A_NoSHM = out_A_NoSHM$vectors, actions_A_NoSHM = out_A_NoSHM$action, 
 alpha_A_SHM   = out_A_SHM$vectors,  actions_A_SHM   = out_A_SHM$action)
 ```
-where “out_S_XXX” parameters are used for constrained settings later. 
+where `out_S_XXX` parameters are used for constrained settings later. 
 
 ## Constraint Modeling
 To model the epistemic external cosntraints, we define the social loss by
@@ -155,4 +155,10 @@ The value functions under constraints are obtained by
 Finally, the VoI can be computed by the difference between value functions.
 
 
+## Code Pipeline
+First, run `DefinePOMDP.m` to define an engineering problem modeled by a POMDP.
+
+Second, run `SolvePOMDP.R` to solve a POMDP.
+
+Third, run `VoI_Analysis.m` to compute the VoI.
 
