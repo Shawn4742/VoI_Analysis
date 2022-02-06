@@ -13,7 +13,7 @@ git clone https://github.com/Shawn4742/VoI_Analysis.git
 ```
 
 ## Problem Definition
-A good POMDP tutorial can be found [here](http://www.pomdp.org/tutorial/). 
+An illuistrative POMDP tutorial can be found [here](http://www.pomdp.org/tutorial/). 
 
 Our problem is defined by a state space, representing the condition of an infrastructure component, and an action space, representing the available maintenance actions on that component. For simplicity, we limit the number of states as 3, including intact, damaged and failure conditions, actions as 2, for example, do-nothing and repair. The problem definition is implemented by MATLAB in the following.
 
