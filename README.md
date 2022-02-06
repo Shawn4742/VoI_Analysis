@@ -9,7 +9,7 @@ You need to install MATLAB and R. The POMDP solver (SARSOP) is required and it i
 Then clone this repo:
 
 ```
-git clone http://github.com/spro/xxx
+git clone https://github.com/Shawn4742/VoI_Analysis.git
 ```
 
 ## Problem Definition
