@@ -144,7 +144,7 @@ Without the external constraints, we can simply compute the value functions by
 [V_star, V_star_F, V_star_w, V_star_w_F] = V_star_Losses(m_B, Obs_SHM, alpha_A_NoSHM, alpha_A_SHM);
 ```
 
-Considering the external constraints, the concept of cross-product MDPs is used to build policy graph to evaluate a constrained policy. The recommended references are [IA in SDM under Epistemic Constraints](https://arxiv.org/abs/2106.04984) and [Predicting the Evolution of Controlled Systems](https://ieeexplore.ieee.org/document/9406117).
+Considering the external constraints, the concept of cross-product MDPs is used to evaluate a constrained policy. The recommended references are [IA in SDM under Epistemic Constraints](https://arxiv.org/abs/2106.04984) and [Predicting the Evolution of Controlled Systems](https://ieeexplore.ieee.org/document/9406117) understand how to evulate a constrained policy and compute the VoI.
 
 The value functions under constraints are obtained by
 
