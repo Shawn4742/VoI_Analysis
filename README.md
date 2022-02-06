@@ -24,8 +24,8 @@ p12 = 0.04;
 p23 = p12 * 3;
 
 T_dn = [1-p12   p12   0;
-        0           p23   1 - p23;
-        0           0     1];   
+        0       p23   1 - p23;
+        0       0     1];   
     
 T_rp = ones(size(T_dn, 1), 1) * T_dn(1, :);
 Tr(:,:,1) = T_dn; 
@@ -38,16 +38,16 @@ For the observations, we define the ones without monitoring efforts,
 e_NoSHM = 0.5;
 Obs_NoSHM = [1-e_NoSHM     e_NoSHM       0;
                            e_NoSHM       1-e_NoSHM    0;
-                           0                      0                     1];
+                           0             0            1];
 ```
 
 and with monitoring efforts,
 
 ```
 e_SHM = 0.2;
-Obs_SHM = [1-e_SHM     e_SHM          0;
-                       e_SHM      1-e_SHM        0;
-                       0                0                     1];
+Obs_SHM = [1-e_SHM        e_SHM          0;
+           e_SHM          1-e_SHM        0;
+           0              0              1];
 ```
 
 Next, we assign the observations into the emission matrix for each action,
@@ -56,6 +56,7 @@ Next, we assign the observations into the emission matrix for each action,
 for i = 1: size(Tr,3)
     % No SHM
     ObsE1(:,:,i) = Obs_NoSHM;
+    
     % SHM
     ObsE2(:,:,i) = Obs_SHM;
 end
@@ -73,6 +74,7 @@ Cost_A = [  0        Cr_A;
 ```
 
 The discount factor is set as
+
 ```
 discount = 0.95
 ```
@@ -123,6 +125,19 @@ alpha_A_SHM   = out_A_SHM$vectors,  actions_A_SHM   = out_A_SHM$action)
 ```
 where “out_S_XXX” parameters are used for constrained settings later. 
 
+## Constraint Modeling
+To model the epistemic external cosntraints, we define the social loss by
+
+```
+Cr_S   = -0.25;
+Cost_S = [ 0 	Cr_S;
+           0 	Cr_S;
+           Cf 	Cr_S + Cf];
+```
 
 ## VoI Analysis
+Without external constraints, we can simply compute the value functions and VoI by
 
+```
+[V_star, V_star_F, V_star_w, V_star_w_F] = V_star_Losses(m_B, Obs_SHM, alpha_A_NoSHM, alpha_A_SHM);
+```
