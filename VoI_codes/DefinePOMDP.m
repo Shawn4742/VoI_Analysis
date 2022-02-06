@@ -25,7 +25,7 @@ Tr(:,:,2) = T_rp;
     
 % Define Observations
 e_NoSHM = 0.5;
-e_SHM = 0.2;
+e_SHM = 0.1;
 e_SHM2 = e_SHM;
   
 Obs_SHM = [1-e_SHM   e_SHM     0;

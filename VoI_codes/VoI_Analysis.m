@@ -1,16 +1,9 @@
-%%%% 
-
-%%%% MC: see info6_trajectory.m
-
-
-
-% load from SARSOP
-load('POMDP_Input.mat');
-
+%%%% load from SARSOP
+load('OutputSARSOP.mat');
 
 %%% -------------------- %%%
 % m_B_actions does not inlcude Failure state.
-num_beliefs = 1500;
+num_beliefs = 600;
 delta_s = 1./ num_beliefs;
 m_B_s2 = 0: delta_s: 1;
 m_B = horzcat(1-m_B_s2', m_B_s2');
@@ -28,6 +21,16 @@ if prune_flag == 1
     [alpha_A_SHM, actions_A_SHM]     = PruneAlpha(alpha_A_SHM, actions_A_SHM, m_B);
 end
 %%% -------------------- %%%
+
+
+
+%%%%%%%%%%%  adjust the front, etc. %%%%%%%
+label_size = 15;
+gca_size = 16.5;
+lgd_size = 17;
+line_w = 3;
+marker_s = 2;
+%%%%%%%%%%% ------------------------ %%%%%%%
 
 
 %%% -------------------- %%%
@@ -68,6 +71,7 @@ VoI_C =         V_star - V_star_w_F;
 
 
 %%% -------------------- %%%
+
 % Plot Loss and VoI
 figure(12112)
 set(gcf,'color','white')
