@@ -92,9 +92,9 @@ The POMDP is solved by R package.
 Load the R package first,
 
 ```
-library(appl)
+library(appl) # for older version of POMDP solver
+# library(sarsop) # for new one
 library(R.matlab)
-setwd("C:/Users/shuol2/paper3/codes_for_paper3/IA/codes")
 
 # input data
 input <- readMat("POMDP_Input.mat")
@@ -117,7 +117,7 @@ where state_prior, precision and timeout are the optional inputs in SARSOP, and 
 Save the outputs by
 
 ```
-writeMat("OutputSARSOP_info6.mat", 
+writeMat("OutputSARSOP.mat", 
 alpha_S_NoSHM = out_S_NoSHM$vectors, actions_S_NoSHM = out_S_NoSHM$action, 
 alpha_S_SHM   = out_S_SHM$vectors,   actions_S_SHM   = out_S_SHM$action,
 alpha_A_NoSHM = out_A_NoSHM$vectors, actions_A_NoSHM = out_A_NoSHM$action, 
@@ -143,7 +143,7 @@ Without the external constraints, we can simply compute the value functions by
 ```
 [V_star, V_star_F, V_star_w, V_star_w_F] = V_star_Losses(m_B, Obs_SHM, alpha_A_NoSHM, alpha_A_SHM);
 ```
-
+where `V_star` represents optimal value without additional information, `V_star_F` represents optimal value function with additional information available from next step, `V_star_w` represents optimal value function only with current information, `V_star_w_F` represents optimal value function with additional information available from the current step.  
 
 Considering the external constraints, the concept of cross-product MDPs is used to evaluate a constrained policy. The recommended references are [IA in SDM under Epistemic Constraints](https://arxiv.org/abs/2106.04984) and [Predicting the Evolution of Controlled Systems](https://ieeexplore.ieee.org/document/9406117) to understand how to evulate a constrained policy and compute the VoI under those external contraints.
 
@@ -153,7 +153,10 @@ The value functions under constraints are obtained by
 [V_tilde, V_tilde_F, V_tilde_w, V_tilde_w_F] = V_tilde_Losses(m_B, n_s_full, Obs_SHM, alpha_S_NoSHM, Vpi_S_NoSHM, alpha_S_SHM, Vpi_S_SHM);
 ```
 
-Finally, the VoI can be computed by the difference between value functions and see
+where `V_tilde` represents constrained value without additional information, `V_star_F` represents constrained value function with additional information available from next step, `V_tilde_w` represents constrained value function only with current information, `V_tilde_w_F` represents constrained value function with additional information available from the current step.  
+
+
+Finally, the VoI can be computed by the difference between two value functions, for example,
 
 ```
 VoI_plus =      V_tilde - V_tilde_w_F;
@@ -161,7 +164,6 @@ VoI_C_plus =    V_tilde - V_tilde_w;
 VoI =           V_star - V_star_w_F;
 VoI_C =         V_star - V_star_w_F;
 ```
-
 
 ## Code Pipeline
 First, run `DefinePOMDP.m` to define an engineering problem modeled by a POMDP.
