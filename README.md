@@ -1,5 +1,5 @@
 # Tutorials for VoI Analysis
-This tutorial demonstrate the techniques to compute the VoI without and with external constraints.
+This tutorial demonstrates the techniques to compute the VoI without and with external constraints.
 
 
 ## Get Started
