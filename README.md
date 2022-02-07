@@ -4,7 +4,7 @@ This tutorial demonstrate the techniques to compute the VoI without and with ext
 
 ## Get Started
 
-You need to install MATLAB and R. The POMDP solver (SARSOP) is required and it is available [here](https://github.com/boettiger-lab/sarsop).
+You need to install MATLAB and R. The POMDP solver (SARSOP) is required and it is available [here](https://github.com/boettiger-lab/sarsop). To install required R packages, you can check [here](https://r-coder.com/install-r-packages/) for more information.
 
 Then clone this repo:
 
