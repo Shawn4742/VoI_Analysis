@@ -37,8 +37,8 @@ For the observations, we define the ones without monitoring efforts,
 ```
 e_NoSHM = 0.5;
 Obs_NoSHM = [1-e_NoSHM     e_NoSHM       0;
-                           e_NoSHM       1-e_NoSHM    0;
-                           0             0            1];
+              e_NoSHM       1-e_NoSHM    0;
+              0             0            1];
 ```
 
 and with monitoring efforts,
@@ -69,8 +69,8 @@ Cf = -1; % failure cost
 Cr_A = -0.05; % repair cost
 
 Cost_A = [  0        Cr_A;
-                  0         Cr_A;
-                 Cf        Cr_A + Cf];
+            0        Cr_A;
+           Cf        Cr_A + Cf];
 ```
 
 The discount factor is set as
@@ -85,6 +85,8 @@ We save the defined parameters by commond
 save(‘POMDP_Input', 'Tr', 'n_s_full', 'Cost_A', 'Cost_S', 'ObsE1', 'ObsE2', 'discount');
 ```
 where `Cost_S` is used for constrained setting later. The code for problem definition is in file XXX.
+
+
 
 ## POMDP Solving
 The POMDP is solved by R package. 
