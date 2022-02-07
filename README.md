@@ -4,7 +4,7 @@ This tutorial demonstrates the techniques to compute the VoI without and with ex
 
 ## Get Started
 
-You need to install MATLAB and R. The POMDP solver (SARSOP) is required and it is available [here](https://github.com/boettiger-lab/sarsop). To install required R packages, you can check [here](https://r-coder.com/install-r-packages/) for more information.
+You need to install MATLAB and R. The POMDP solver (SARSOP) in R is required and it is available [here](https://github.com/boettiger-lab/sarsop). To install required R packages, you can check [here](https://r-coder.com/install-r-packages/) for more information.
 
 Then clone this repo:
 
@@ -32,7 +32,7 @@ Tr(:,:,1) = T_dn;
 Tr(:,:,2) = T_rp; 
 ```
 
-For the observations, we define the ones without monitoring efforts, 
+For the observations, we define the matrix without monitoring efforts, 
 
 ```
 e_NoSHM = 0.5;
@@ -84,7 +84,7 @@ We save the defined parameters by commond
 ```
 save(‘POMDP_Input', 'Tr', 'n_s_full', 'Cost_A', 'Cost_S', 'ObsE1', 'ObsE2', 'discount');
 ```
-where `Cost_S` is used for constrained setting later. The code for problem definition is in file XXX.
+where `Cost_S` is used for constrained setting later.
 
 
 
@@ -94,8 +94,8 @@ The POMDP is solved by R package.
 Load the R package first,
 
 ```
-library(appl) # for older version of POMDP solver
-# library(sarsop) # for new one
+library(appl) # for the older version of SARSOP
+# library(sarsop) # for the latest version of SARSOP
 library(R.matlab)
 
 # input data
@@ -136,7 +136,7 @@ Cost_S = [ 0 	Cr_S;
            0 	Cr_S;
            Cf 	Cr_S + Cf];
 ```
-By solving a POMDP with social loss, the social constrained policy is obtained in our analysis.
+By solving a POMDP with social loss, the social constrained policy is obtained.
 
 
 ## VoI Analysis
@@ -145,6 +145,7 @@ Without the external constraints, we can simply compute the value functions by
 ```
 [V_star, V_star_F, V_star_w, V_star_w_F] = V_star_Losses(m_B, Obs_SHM, alpha_A_NoSHM, alpha_A_SHM);
 ```
+
 where `V_star` represents optimal value without additional information, `V_star_F` represents optimal value function with additional information available from next step, `V_star_w` represents optimal value function only with current information, `V_star_w_F` represents optimal value function with additional information available from the current step.  
 
 Considering the external constraints, the concept of cross-product MDPs is used to evaluate a constrained policy. The recommended references are [IA in SDM under Epistemic Constraints](https://arxiv.org/abs/2106.04984) and [Predicting the Evolution of Controlled Systems](https://ieeexplore.ieee.org/document/9406117) to understand how to evulate a constrained policy and compute the VoI under those external contraints.
