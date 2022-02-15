@@ -181,7 +181,10 @@ Third, run `VoI_Analysis.m` to compute the VoI.
 @misc{shuo2022voianalysis,
       title={Tutorials for VoI Analysis}, 
       author={Shuo Li and Matteo Pozzi},
-      year={2022}
+      year={2022},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      url = {https://github.com/Shawn4742/VoI_Analysis},
+      howpublished = {\url{https://github.com/Shawn4742/VoI_Analysis}
 }
 ```
-
