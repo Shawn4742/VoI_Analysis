@@ -175,3 +175,13 @@ Second, run `SolvePOMDP.R` to solve a POMDP.
 
 Third, run `VoI_Analysis.m` to compute the VoI.
 
+
+## Citations
+```
+@misc{shuo2022voianalysis,
+      title={Tutorials for VoI Analysis}, 
+      author={Shuo Li and Matteo Pozzi},
+      year={2022}
+}
+```
+
